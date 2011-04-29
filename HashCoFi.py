@@ -193,11 +193,11 @@ class HashMatrix:
             oldUserWeight = self.userWeights[userIndex]
             oldItemWeight = self.itemWeights[itemIndex]
 
-            self.userWeights[userIndex] = getNewCoefficient(
+            self.userWeights[userIndex] = self.getNewCoefficient(
                 gamma, mu, oldUserWeight, oldItemWeight, userSigma, itemSigma
             )
 
-            self.itemWeights[itemIndex] = getNewCoefficient(
+            self.itemWeights[itemIndex] = self.getNewCoefficient(
                 gamma, mu, oldItemWeight, oldUserWeight, itemSigma, userSigma
             )
 
