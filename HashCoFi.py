@@ -3,7 +3,7 @@
 import sys
 import random
 
-from MurmurHash2 import MurmurHash2
+from FnvHash import fnv32
 
 class HashCoFi:
     """ Class that performs "Collaborative Filtering on a Budget".
@@ -134,14 +134,13 @@ class HashMatrix:
         self.userWeights = self.getRandomWeights()
         self.itemWeights = self.getRandomWeights()
         
-        self.murmur1 = MurmurHash2()
-        self.murmur2 = MurmurHash2(104706279373)
+        self.fnv = fnv32() 
 
     def hash1(self, a):
-        return self.murmur1.hash32(a) % self.weightLength
+        return self.fnv.fnv1(a) % self.weightLength
 
     def hash2(self, a):
-        return self.murmur2.hash32(a) % self.weightLength
+        return self.fnv.fnv1a(a) % self.weightLength
 
     def rademacher1(self, item):
         hashedval = self.hash1(item)
