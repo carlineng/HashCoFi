@@ -1,0 +1,10 @@
+Implementation of "Collaborative Filtering On a Budget" by Karatzoglou et.
+al.
+
+Python class that allows you to perform large scale collaborative filtering
+tasks.  Makes use of hash kernels to bound the memory usage of the program,
+independent of the feature space, or size of the corpus.
+
+See "Hash Kernels for Structured Data" by Shi et. al. for more details.
+
+Depends on the mmhash python package
