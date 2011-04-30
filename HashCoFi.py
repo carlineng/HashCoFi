@@ -2,8 +2,7 @@
 
 import sys
 import random
-
-from FnvHash import fnv32
+import mmhash
 
 class HashCoFi:
     """ Class that performs "Collaborative Filtering on a Budget".
@@ -134,13 +133,11 @@ class HashMatrix:
         self.userWeights = self.getRandomWeights()
         self.itemWeights = self.getRandomWeights()
         
-        self.fnv = fnv32() 
-
     def hash1(self, a):
-        return self.fnv.fnv1(a) % self.weightLength
+        return mmhash.get_hash(a) % self.weightLength
 
     def hash2(self, a):
-        return self.fnv.fnv1a(a) % self.weightLength
+        return mmhash.get_hash(str(hash(str(a)) % 2**31)) % self.weightLength
 
     def rademacher1(self, item):
         hashedval = self.hash1(item)
